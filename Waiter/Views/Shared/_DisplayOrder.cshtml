@@ -1,17 +1,17 @@
 ﻿@model Waiter.ViewModels.OrderViewModel
-
-<table>
-    <tr>
-        <th>Amount</th>
-        <th>Dish</th>
-        <th>Price</th>
-    </tr>
-    @foreach (var o in @Model.Orders)
-    {
+    <table>
         <tr>
-            <td>@o.Amount</td>
-            <td>@o.DishName</td>
-            <td>@o.Price</td>
+            <th>Amount</th>
+            <th>Dish</th>
+            <th>Price</th>
         </tr>
-    }
-</table>
+        @foreach (var o in @Model.Orders)
+        {
+            <tr>
+                <td>@o.Amount</td>
+                <td>@o.DishName</td>
+                <td>@o.Price zł</td>
+            </tr>
+        }
+    </table>
+    <div><b>Total price:</b> @Model.Sum</div>

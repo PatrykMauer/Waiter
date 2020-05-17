@@ -10,5 +10,6 @@ namespace Waiter.ViewModels
     public class OrderViewModel
     {
         public IEnumerable<Order> Orders { get; set; }
+        public decimal Sum { get; set; }
     }
 }

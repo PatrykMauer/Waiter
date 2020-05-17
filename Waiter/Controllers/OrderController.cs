@@ -25,10 +25,40 @@ namespace Waiter.Controllers
             await _orderService.AddAsync(selectedTable, amount, selectedDish, price);
             var orders = await _orderService.GetAsync(selectedTable);
 
+            var amounts = orders.Select(x => x.Amount).ToList();
+            var prices = orders.Select(x => x.Price).ToList();
+            decimal sum = 0;
+            for (var i = 0; i < orders.Count(); i++)
+            {
+                sum += amounts[i] * prices[i];
+            }
+
             var viewModel = new OrderViewModel()
             {
-               Orders=orders
-            };    
+                Orders = orders,
+                Sum = sum
+            };
+
+            return PartialView("_DisplayOrder", viewModel);
+        }
+
+        public async Task<ActionResult> Display(int selectedTable)
+        {
+            var orders = await _orderService.GetAsync(selectedTable);
+
+            var amounts = orders.Select(x => x.Amount).ToList();
+            var prices = orders.Select(x => x.Price).ToList();
+            decimal sum = 0;
+            for (var i = 0; i < orders.Count(); i++)
+            {
+                sum += amounts[i] * prices[i];
+            }
+
+            var viewModel = new OrderViewModel()
+            {
+                Orders = orders,
+                Sum = sum
+            };
 
             return PartialView("_DisplayOrder", viewModel);
         }

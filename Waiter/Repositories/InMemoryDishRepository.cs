@@ -15,7 +15,7 @@ namespace Waiter.Repositories
             new Dish {Id =2, Name = "CARBONARA", Price = 28.99M},
             new Dish {Id =3, Name = "CLASSICA", Price = 26.99M},
             new Dish {Id =4, Name = "EUROPEAN", Price = 28.99M},
-            new Dish {Id =5, Name = "FARMER", Price = 2.99M},
+            new Dish {Id =5, Name = "FARMER", Price = 20.99M},
         };
 
         public async Task<IEnumerable<Dish>> GetAllAsync()
