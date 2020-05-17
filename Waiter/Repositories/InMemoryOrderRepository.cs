@@ -11,9 +11,9 @@ namespace Waiter.Repositories
     {
         private static ISet<Order> _orders = new HashSet<Order>()
         {
-            new Order {Id = 1, OrderId = 1, TableIds = new List<int>{1,2,3} },
-            new Order {Id = 2, OrderId = 2, TableIds = new List<int>{2,3,4}},
-            new Order {Id = 3, OrderId = 3, TableIds = new List<int>{3}},
+            new Order {Id = 1, DishId = 1, TableIds = new List<int>{1,2,3} },
+            new Order {Id = 2, DishId = 2, TableIds = new List<int>{2,3}},
+            new Order {Id = 3, DishId = 3, TableIds = new List<int>{3}},
         };
 
         public async Task<Order> GetAsync(int id)

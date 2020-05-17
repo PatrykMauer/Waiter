@@ -1,5 +1,18 @@
-﻿@*@model Waiter.ViewModel.
+﻿@model Waiter.ViewModels.TablesViewModel
 
-@Html.DropDownListFor()
+@Html.DropDownListFor(m => m.TableId, new SelectList(Model.Tables, "Id", "Id"),
+    "Select a Table number", new { @class = "form-control", @change = "this.form.submit();", @id = "dropDownId" })
+<div id="dishesDiv"></div>
 
-@Html.DropDownListFor(m => m.SelectedShape, Model.ShapeItems, "Select a Shape", new { @class = "form-control", @change = "this.form.submit();", @id = "dropDownId" })*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        $("#dropDownId").change(
+            function () {
+                var selectedTable = $(this).find(":selected").text();
+                $('#dishesDiv').load('@Url.Action("Display","Dish")', { "selectedTable": selectedTable });
+            });
+    });
+
+</script>
+

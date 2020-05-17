@@ -7,7 +7,7 @@ using Waiter.Models;
 
 namespace Waiter.Repositories
 {
-    interface IDishRepository : IRepository
+    public interface IDishRepository : IRepository
     {
         Task<Dish> GetAsync(int id);
         Task<Dish> GetAsync(string name);

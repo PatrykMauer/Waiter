@@ -1,0 +1,48 @@
+﻿@model Waiter.ViewModels.DishesViewModel
+
+@Html.DropDownListFor(m => m.DishId, new SelectList(Model.Dishes, "Id", "Name"),
+    "Select a dish", new { @class = "form-control", @change = "this.form.submit();", @id = "dishDropdown" })
+
+@using(@Html.BeginForm("Display","Order", FormMethod.Post, new { id = "form"}))
+{
+    <div class="flex">
+        <label id="dish" for="name"></label>
+        <label id="price" style="margin-left: 5px; margin-right: 5px;"></label>
+        <div id="input" style="margin-left: 5px;"></div>
+        <button type="submit"> Add </button>
+    </div>
+}
+
+<script>
+    var priceValue;
+     $(function () {
+         $("#dishDropdown").change(
+            function () {
+                var selectedDish = $(this).find(":selected").text();
+                 $('#dish').text(selectedDish + " ");
+                 $('#price').load('@Url.Action("Price","Dish")', { "selectedDish": selectedDish }, function () {
+
+                     priceValue = $('#price').text();
+
+                     if ($('#input').is(':empty')) {
+                         $('#input').append('@Html.TextBox("amount", 1 , new { @class = "form-control",  })');
+                     }
+
+                     var selectedTable = $("<input>")
+                         .attr("type", "hidden")
+                         .attr("name", "selectedTable").val(@Model.TableId);
+
+                     var dish = $("<input>")
+                         .attr("type", "hidden")
+                         .attr("name", "selectedDish").val(selectedDish);
+
+                     var price = $("<input>")
+                         .attr("type", "hidden")
+                         .attr("name", "price").val(priceValue);
+
+                     $('#form').append(selectedTable).append(dish).append(price);
+
+                 });
+             });
+    });
+</script>

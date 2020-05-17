@@ -8,7 +8,7 @@ namespace Waiter.Repositories
 {
     //Marker
 
-    interface IRepository
+    public interface IRepository
     {
     }
 }

@@ -7,7 +7,7 @@ using Waiter.Models;
 
 namespace Waiter.Repositories
 {
-    interface IOrderRepository : IRepository
+    public interface IOrderRepository : IRepository
     {
         Task<Order> GetAsync(int id);
         Task<IEnumerable<Order>> GetAllAsync();

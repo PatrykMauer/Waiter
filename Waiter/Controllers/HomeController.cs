@@ -1,30 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Waiter.Repositories;
+using Waiter.ViewModels;
 
 namespace Waiter.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly ITableRepository _tableRepository;
+
+        public HomeController(ITableRepository tableRepository)
         {
-            return View();
+            _tableRepository = tableRepository;
         }
-
-        public ActionResult About()
+        public async Task<ActionResult> Index()
         {
-            ViewBag.Message = "Your application description page.";
+            var tables = await _tableRepository.GetAllAsync();
 
-            return View();
-        }
+            var viewModel = new TablesViewModel()
+            { 
+                Tables = tables,
+            };
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(viewModel);
         }
     }
 }

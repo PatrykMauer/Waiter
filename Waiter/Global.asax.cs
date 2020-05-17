@@ -19,7 +19,7 @@ namespace Waiter
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -27,6 +27,9 @@ namespace Waiter
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterType<InMemoryDishRepository>().As<IDishRepository>();
+            builder.RegisterType<InMemoryTableRepository>().As<ITableRepository>();
+            builder.RegisterType<InMemoryOrderRepository>().As <IOrderRepository>();
+
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.Name.EndsWith("Controller"));
 
