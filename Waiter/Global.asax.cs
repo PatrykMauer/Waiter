@@ -11,6 +11,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Waiter.App_Start;
 using Waiter.Repositories;
+using Waiter.Services;
 
 namespace Waiter
 {
@@ -29,6 +30,8 @@ namespace Waiter
             builder.RegisterType<InMemoryDishRepository>().As<IDishRepository>();
             builder.RegisterType<InMemoryTableRepository>().As<ITableRepository>();
             builder.RegisterType<InMemoryOrderRepository>().As <IOrderRepository>();
+            builder.RegisterType<OrderService>().As<IOrderService>();
+
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.Name.EndsWith("Controller"));

@@ -9,6 +9,9 @@ namespace Waiter.Models
     {
         public int Id { get; set; }
         public List<int> TableIds { get; set; } = new List<int>();
-        public int DishId { get; set; }
+        public int Amount { get; set; }
+        public string DishName { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

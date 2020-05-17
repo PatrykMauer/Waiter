@@ -3,7 +3,15 @@
 <table>
     <tr>
         <th>Amount</th>
-        <th>Order</th>
+        <th>Dish</th>
         <th>Price</th>
     </tr>
+    @foreach (var o in @Model.Orders)
+    {
+        <tr>
+            <td>@o.Amount</td>
+            <td>@o.DishName</td>
+            <td>@o.Price</td>
+        </tr>
+    }
 </table>

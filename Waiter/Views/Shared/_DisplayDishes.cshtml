@@ -3,7 +3,9 @@
 @Html.DropDownListFor(m => m.DishId, new SelectList(Model.Dishes, "Id", "Name"),
     "Select a dish", new { @class = "form-control", @change = "this.form.submit();", @id = "dishDropdown" })
 
-@using(@Html.BeginForm("Display","Order", FormMethod.Post, new { id = "form"}))
+
+@using (Ajax.BeginForm("AddOrder", "Order", null,
+    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ordersTable" }, new { id = "form" }))
 {
     <div class="flex">
         <label id="dish" for="name"></label>
@@ -11,7 +13,9 @@
         <div id="input" style="margin-left: 5px;"></div>
         <button type="submit"> Add </button>
     </div>
+    
 }
+<div id="ordersTable"></div>
 
 <script>
     var priceValue;
