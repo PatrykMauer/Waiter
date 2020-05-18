@@ -9,7 +9,8 @@ namespace Waiter.Services
 {
     public interface IOrderService : IService
     {
-        Task AddAsync(int selectedTable, int amount, string selectedDish, string price);
         Task<IEnumerable<Order>> GetAsync (int selectedTable);
+        Task<IEnumerable<Order>> GetAllAsync();
+        Task AddAsync(int selectedTable, int amount, string selectedDish, string price);
     }
 }

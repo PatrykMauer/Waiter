@@ -149,6 +149,7 @@
     <Compile Include="Controllers\DishController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,7 +166,9 @@
     <Compile Include="Repositories\ITableRepository.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\ITableService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\TableService.cs" />
     <Compile Include="ViewModels\DishesViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PriceViewModel.cs" />
@@ -211,11 +214,14 @@
     <Content Include="Views\Shared\_DisplayDishes.cshtml" />
     <Content Include="Views\Shared\_DisplayPrice.cshtml" />
     <Content Include="Views\Shared\_DisplayOrder.cshtml" />
+    <Content Include="Views\Shared\_Tables.cshtml" />
+    <Content Include="Views\Order\Orders.cshtml" />
+    <Content Include="Views\Table\Display.cshtml" />
+    <Content Include="Views\Table\Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Dish\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

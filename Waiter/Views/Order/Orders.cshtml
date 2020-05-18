@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Waiter.ViewModels.TablesViewModel
+
+<div>
+    @foreach (var table in Model.Tables)
+    {
+        <partial name="_DisplayOrder" model="table" />
+    }
+</div>

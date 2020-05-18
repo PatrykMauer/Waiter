@@ -17,26 +17,27 @@ namespace Waiter.Services
         {
             _orderRepository = orderRepository;
         }
-        public async Task AddAsync(int selectedTable, int amount, string selectedDish, string price)
-        {
-            var order = new Order()
-            {
-                TableIds = new List<int>() { selectedTable },
-                Amount = amount,
-                DishName = selectedDish,
-                Price = Convert.ToDecimal(price.Replace("zł",""))
-            };
-
-            await _orderRepository.AddAsync(order);
-
-            return;
-        }
+       
 
         public async Task<IEnumerable<Order>> GetAsync(int selectedTable)
         {
             var orders = await _orderRepository.GetAsync(selectedTable);
 
             return orders;
+        }
+
+        public async Task<IEnumerable<Order>> GetAllAsync()
+        {
+            var orders = await _orderRepository.GetAllAsync();
+
+            return orders;
+        }
+
+        public async Task AddAsync(int selectedTable, int amount, string selectedDish, string price)
+        {
+            await Task.CompletedTask;
+
+            return;
         }
     }
 }

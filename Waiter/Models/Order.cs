@@ -7,11 +7,22 @@ namespace Waiter.Models
 {
     public class Order
     {
-        public int Id { get; set; }
-        public List<int> TableIds { get; set; } = new List<int>();
-        public int Amount { get; set; }
-        public string DishName { get; set; }
+        public int TableId { get; protected set; } 
+        public int Amount { get; protected set; }
+        public string DishName { get; protected set; }
+        public decimal Price { get; protected set; }
 
-        public decimal Price { get; set; }
+        public Order(int tableId, int amount, string dishName, decimal price)
+        {
+            TableId = tableId;
+            Amount = amount;
+            DishName = dishName;
+            Price = price;
+        }
+
+        public decimal CountPrice()
+        {
+            return Amount * Price;
+        }
     }
 }

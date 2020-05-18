@@ -32,11 +32,11 @@ namespace Waiter.Repositories
 
         public async Task UpdateAsync(Table table)
         {
-            var updatedTable = _tables.SingleOrDefault(x => x.Id == table.Id);
+            var oldTable = _tables.SingleOrDefault(x => x.Id == table.Id);
+            await Task.FromResult(_tables.Remove(oldTable));
+            await Task.FromResult(_tables.Add(table));
+
             await Task.CompletedTask;
         }
-
-        public async Task RemoveAsync(int id)
-        => await Task.FromResult(_tables.Remove(_tables.Single(x => x.Id == id)));
     }
 }

@@ -4,7 +4,7 @@
     "Select a dish", new { @class = "form-control", @change = "this.form.submit();", @id = "dishDropdown" })
 
 
-@using (Ajax.BeginForm("AddOrder", "Order", null,
+@using (Ajax.BeginForm("Update", "Table", null,
     new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ordersTable" }, new { id = "form" }))
 {
     <div class="flex">
@@ -23,6 +23,7 @@
          $("#dishDropdown").change(
             function () {
                 var selectedDish = $(this).find(":selected").text();
+
                  $('#dish').text(selectedDish + " ");
                  $('#price').load('@Url.Action("Price","Dish")', { "selectedDish": selectedDish }, function () {
 
@@ -31,6 +32,8 @@
                      if ($('#input').is(':empty')) {
                          $('#input').append('@Html.TextBox("amount", 1 , new { @class = "form-control",  })');
                      }
+
+                     
 
                      var selectedTable = $("<input>")
                          .attr("type", "hidden")
@@ -44,7 +47,7 @@
                          .attr("type", "hidden")
                          .attr("name", "price").val(priceValue);
 
-                     $('#form').append(selectedTable).append(dish).append(price);
+                     $('#form').prepend(selectedTable).prepend(dish).prepend(price);
 
                      
                  });

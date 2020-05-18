@@ -31,6 +31,8 @@ namespace Waiter
             builder.RegisterType<InMemoryTableRepository>().As<ITableRepository>();
             builder.RegisterType<InMemoryOrderRepository>().As <IOrderRepository>();
             builder.RegisterType<OrderService>().As<IOrderService>();
+            builder.RegisterType<TableService>().As<ITableService>();
+
 
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

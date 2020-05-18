@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Waiter.Models.Table
+
+    <div>
+        <table class="table">
+            <tr>
+                <th>Amount</th>
+                <th>Dish</th>
+                <th>Price</th>
+            </tr>
+
+            @foreach (var o in @Model.Orders)
+            {
+                <tr>
+                    <td>@o.Amount</td>
+                    <td>@o.DishName</td>
+                    <td>@o.Price zł</td>
+                </tr>
+            }
+
+
+
+        </table>
+        <div id="price"> Total price: @Model.TotalPrice()</div>
+        <button onclick="Tip()">Tip 5%</button>
+    </div>
+
+ <script>
+        function Tip() {
+        @{var price =Model.TotalPrice() * 0.95M;}
+        $('#price').text('Total price:' + @price);
+    }
+</script>

@@ -21,7 +21,6 @@ namespace Waiter.Repositories
         public async Task<IEnumerable<Dish>> GetAllAsync()
             => await Task.FromResult(_dishes);
 
-
         public async Task<Dish> GetAsync(int id)
             => await Task.FromResult(_dishes.SingleOrDefault(x => x.Id == id));
 

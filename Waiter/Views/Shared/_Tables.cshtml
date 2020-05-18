@@ -1,0 +1,55 @@
+﻿@model Waiter.Models.Table
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+     function Pay(btnId) {
+         var link = '@Url.Action("Pay","Table", new {Id = "-1"})';
+         link = link.replace("-1", $(btnId).attr('id'));
+         location.href = link;
+     }
+
+    function Clear(tableId) {
+
+         var link = '@Url.Action("Clear","Table", new {id = -1 })';
+         link = link.replace("-1", tableId);
+         location.href = link;
+         @*$("#" + tableId + " tbody").html("<tr><th>Table number @Model.Id</th></tr><tr><th>There's no pending orders for this table</th></tr>");*@
+     }
+
+</script>
+
+<div>
+    <table class="table" id="@Model.Id">
+        <tr><th>Table number @Model.Id</th></tr>
+        @if (Model.Orders.Count() != 0)
+        {
+            <tr><td><button onclick="Clear(@Model.Id)">Clear Order</button></td></tr>
+            <tr>
+                <th>Amount</th>
+                <th>Dish</th>
+                <th>Price</th>
+            </tr>
+            <tr >
+                @foreach (var o in @Model.Orders)
+                {
+                <tr>
+                    <td>@o.Amount</td>
+                    <td>@o.DishName</td>
+                    <td>@o.Price zł</td>
+                </tr>
+            }
+                </tr>
+                <tr><th>Total price: @Model.TotalPrice()</th> </tr>
+
+            }
+            else
+            {
+                <tr><th>There's no pending orders for this table</th></tr>
+            }
+    </table>
+    @if (Model.Orders.Count() != 0)
+    {
+        <button onclick="Pay(this)" id="@Model.Id">Pay</button>
+    }
+</div>
+
+

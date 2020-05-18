@@ -13,6 +13,5 @@ namespace Waiter.Repositories
         Task<IEnumerable<Table>> GetAllAsync();
         Task AddAsync(Table table);
         Task UpdateAsync(Table table);
-        Task RemoveAsync(int id);
     }
 }

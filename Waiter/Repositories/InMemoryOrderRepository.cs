@@ -13,7 +13,7 @@ namespace Waiter.Repositories
         
 
         public async Task<IEnumerable<Order>> GetAsync(int tableId)
-             => await Task.FromResult(_orders.Where(x => x.TableIds.Contains(tableId)).ToList());
+             => await Task.FromResult(_orders.Where(x => x.TableId==tableId));
         public async Task<IEnumerable<Order>> GetAllAsync()
             => await Task.FromResult(_orders);
 
@@ -24,12 +24,12 @@ namespace Waiter.Repositories
 
         public async Task UpdateAsync(Order order)
         {
-            var oldOrder = _orders.SingleOrDefault(x => x.Id == order.Id);
+            var oldOrder = _orders.SingleOrDefault(x => x.TableId == order.TableId);
             await Task.CompletedTask;
         }
 
         public async Task RemoveAsync(int id)
-        => await Task.FromResult(_orders.Remove(_orders.Single(x => x.Id == id)));
+        => await Task.FromResult(_orders.Remove(_orders.Single(x => x.TableId == id)));
 
     }
 }
