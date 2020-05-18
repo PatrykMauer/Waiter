@@ -29,5 +29,10 @@ namespace Waiter.Models
         {
             Amount+=value;
         }
+
+        public void DecrementAmount(int value)
+        {
+            Amount -= value;
+        }
     }
 }

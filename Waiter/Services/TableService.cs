@@ -31,7 +31,7 @@ namespace Waiter.Services
             
             if (table.Orders.Any(x=>x.DishName.Contains(dishName)))
             {
-               order = table.Orders.First(x=>x.DishName.Contains(dishName));
+                order = table.Orders.First(x=>x.DishName.Contains(dishName));
                 table.RemoveOrder(order);
                 order.IncrementAmount(amount);
             }
@@ -41,7 +41,23 @@ namespace Waiter.Services
             await _tableRepository.UpdateAsync(table);
         }
 
-        public async Task RemoveAsync(int tableId)
+        public async Task RemoveAsync(int tableId,int amount, string dishName)
+        {
+            var table = await _tableRepository.GetAsync(tableId);
+
+            if (table.Orders.Any(x => x.DishName.Contains(dishName)))
+            {
+                var order = table.Orders.First(x => x.DishName.Contains(dishName));
+                table.RemoveOrder(order);
+                
+                order.DecrementAmount(amount);
+                table.AddOrder(order);
+            }
+
+            await _tableRepository.UpdateAsync(table);
+        }
+
+        public async Task RemoveAllAsync(int tableId)
         {
             var table = await _tableRepository.GetAsync(tableId);
 

@@ -1,0 +1,16 @@
+﻿@model Waiter.Models.Table
+
+<table class="table">
+    <tr><tr>
+    @foreach (var o in @Model.Orders)
+    {
+    <tr>
+        <td>@o.Amount</td>
+        <td id="edit">@o.DishName</td>
+        <td>@o.Price zł</td>
+    </tr>
+    }
+</tr>
+</tr>
+<tr><th>Total price: @Model.TotalPrice()</th> </tr>
+    </table>

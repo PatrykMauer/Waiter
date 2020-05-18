@@ -12,8 +12,13 @@
          var link = '@Url.Action("Clear","Table", new {id = -1 })';
          link = link.replace("-1", tableId);
          location.href = link;
-         @*$("#" + tableId + " tbody").html("<tr><th>Table number @Model.Id</th></tr><tr><th>There's no pending orders for this table</th></tr>");*@
-     }
+    }
+
+    function Edit(tableId) {
+         var link = '@Url.Action("Edit","Table", new {id = -1 })';
+         link = link.replace("-1", tableId);
+        $('#edit').load(link);
+    }
 
 </script>
 
@@ -24,22 +29,31 @@
         {
             <tr><td><button onclick="Clear(@Model.Id)">Clear Order</button></td></tr>
             <tr>
+                 <td>
+                <button onclick="Edit(@Model.Id)">Edit Order</button>
+                 </td>
+                <td id="edit">
+                </td>
+            </tr>
+            
+            <tr>
                 <th>Amount</th>
                 <th>Dish</th>
                 <th>Price</th>
             </tr>
-            <tr >
-                @foreach (var o in @Model.Orders)
-                {
+            <tr id="editedData">
                 <tr>
-                    <td>@o.Amount</td>
-                    <td>@o.DishName</td>
-                    <td>@o.Price zł</td>
-                </tr>
-            }
+                    @foreach (var o in @Model.Orders)
+                    {
+                        <tr>
+                            <td id>@o.Amount</td>
+                            <td >@o.DishName</td>
+                            <td>@o.Price zł</td>
+                        </tr>
+                     }
                 </tr>
                 <tr><th>Total price: @Model.TotalPrice()</th> </tr>
-
+            </tr>
             }
             else
             {

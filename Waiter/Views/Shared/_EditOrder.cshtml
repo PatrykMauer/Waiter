@@ -1,20 +1,18 @@
-﻿@model Waiter.ViewModels.DishesViewModel
+﻿@model Waiter.ViewModels.EditViewModel
 
 @Html.DropDownListFor(m => m.DishId, new SelectList(Model.Dishes, "Id", "Name"),
-    "Select a dish", new { @class = "form-control", @change = "this.form.submit();", @id = "dishDropdown" })
+    "Select a dish to edit", new { @class = "form-control", @change = "this.form.submit();", @id = "dishDropdown" })
 
 
-@using (Ajax.BeginForm("Update", "Table", null,
-    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ordersTable" }, new { id = "form" }))
+@using (Ajax.BeginForm("Manage", "Table", null,
+    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "editedData" }, new { id = "form" }))
 {
-    <div class="flex">
-        <label id="dish" for="name"></label>
-        <label id="price" style="margin-left: 5px; margin-right: 5px;"></label>
-        <div id="input" style="margin-left: 5px;"></div>
-        <button type="submit"> Add </button>
-    </div>
+    <div class="flex" id="input"></div>
+    <div class="flex " id="price"></div>
+    <input onclick="ClearRows()" type="submit" name="operation" value="Add" formaction="add"  />
+    <input onclick="ClearRows()" type="submit" name="operation" value="Remove" formaction="remove" />
 }
-<div id="ordersTable"></div>
+
 
 <script>
     var priceValue;
@@ -23,7 +21,6 @@
             function () {
                 var selectedDish = $(this).find(":selected").text();
 
-                 $('#dish').text(selectedDish + " ");
                  $('#price').load('@Url.Action("Price","Dish")', { "selectedDish": selectedDish }, function () {
 
                      priceValue = $('#price').text();
@@ -45,9 +42,12 @@
                          .attr("name", "price").val(priceValue);
 
                      $('#form').prepend(selectedTable).prepend(dish).prepend(price);
-
-                     
                  });
              });
-    });
+     });
+
+    function ClearRows() {
+        $('#5 tbody td').empty();
+        console.log("works")
+    }
 </script>

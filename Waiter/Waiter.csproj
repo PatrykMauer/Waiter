@@ -145,7 +145,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebConfig.cs" />
     <Compile Include="Controllers\DishController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -164,12 +163,15 @@
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ITableRepository.cs" />
+    <Compile Include="Services\DishService.cs" />
+    <Compile Include="Services\IDishService.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\ITableService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\TableService.cs" />
     <Compile Include="ViewModels\DishesViewModel.cs" />
+    <Compile Include="ViewModels\EditViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PriceViewModel.cs" />
     <Compile Include="ViewModels\TablesViewModel.cs" />
@@ -218,6 +220,8 @@
     <Content Include="Views\Order\Orders.cshtml" />
     <Content Include="Views\Table\Display.cshtml" />
     <Content Include="Views\Table\Pay.cshtml" />
+    <Content Include="Views\Shared\_EditOrder.cshtml" />
+    <Content Include="Views\Shared\_Rows.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

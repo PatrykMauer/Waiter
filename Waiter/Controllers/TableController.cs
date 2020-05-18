@@ -11,10 +11,13 @@ namespace Waiter.Controllers
     public class TableController : Controller
     {
         private readonly ITableService _tableService;
+        private readonly IDishService _dishService;
 
-        public TableController(ITableService tableService)
+        public TableController(ITableService tableService,
+            IDishService dishService)
         {
             _tableService = tableService;
+            _dishService = dishService;
         }
         // GET: Table
         [HttpPost]
@@ -62,9 +65,39 @@ namespace Waiter.Controllers
 
         public async Task<ActionResult> Clear(int id)
         {
-            await _tableService.RemoveAsync(id);
+            await _tableService.RemoveAllAsync(id);
 
             return RedirectToAction("Display");
+        }
+
+        public async Task<ActionResult> Edit(int id)
+        {
+            var table = await _tableService.GetAsync(id);
+            var dishes = await _dishService.GetAllAsync();
+
+            var viewModel = new EditViewModel()
+            {
+                TableId = table.Id,
+                Dishes = dishes
+            };
+
+            return PartialView("_EditOrder", viewModel);
+        }
+
+        public async Task<ActionResult> Manage(string operation, int selectedTable, int amount, string selectedDish, string price)
+        {
+            if (operation == "Add")
+            {
+                await _tableService.UpdateAsync(selectedTable, amount, selectedDish, Convert.ToDecimal(price.Replace("zł", "")));
+            }
+            else if(operation =="Remove")
+            {
+                await _tableService.RemoveAsync(selectedTable, amount, selectedDish);
+            }
+
+            var table = await _tableService.GetAsync(selectedTable);
+
+            return PartialView("_Rows",table);
         }
     }
 }
