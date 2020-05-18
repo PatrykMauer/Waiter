@@ -28,8 +28,16 @@ namespace Waiter.Services
             var table = await _tableRepository.GetAsync(tableId);
 
             var order = new Order(tableId, amount, dishName, price);
-            table.AddOrder(order);
+            
+            if (table.Orders.Any(x=>x.DishName.Contains(dishName)))
+            {
+               order = table.Orders.First(x=>x.DishName.Contains(dishName));
+                table.RemoveOrder(order);
+                order.IncrementAmount(amount);
+            }
 
+                table.AddOrder(order);
+           
             await _tableRepository.UpdateAsync(table);
         }
 

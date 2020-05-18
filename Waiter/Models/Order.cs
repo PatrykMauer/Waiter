@@ -24,5 +24,10 @@ namespace Waiter.Models
         {
             return Amount * Price;
         }
+
+        public void IncrementAmount(int value)
+        {
+            Amount+=value;
+        }
     }
 }

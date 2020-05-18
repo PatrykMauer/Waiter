@@ -15,6 +15,11 @@ namespace Waiter.Models
             Orders.Add(order);
         }
 
+        public void RemoveOrder(Order order)
+        {
+            Orders.Remove(order);
+        }
+
         public decimal TotalPrice()
         {
             var totalPrice=0M;
