@@ -27,35 +27,21 @@
         <tr><th>Table number @Model.Id</th></tr>
         @if (Model.Orders.Count() != 0)
         {
-            <tr><td><button onclick="Clear(@Model.Id)">Clear Order</button></td></tr>
             <tr>
-                 <td>
-                <button onclick="Edit(@Model.Id)">Edit Order</button>
-                 </td>
-                <td id="edit">
-                </td>
+                <td><button onclick="Clear(@Model.Id)">Clear Order</button></td>
+                <td> <button onclick="Edit(@Model.Id)">Edit Order</button></td>
+                <td id="edit"></td>
             </tr>
-            
             <tr>
                 <th>Amount</th>
                 <th>Dish</th>
                 <th>Price</th>
             </tr>
             <tr id="editedData">
-                <tr>
-                    @foreach (var o in @Model.Orders)
-                    {
-                        <tr>
-                            <td id>@o.Amount</td>
-                            <td >@o.DishName</td>
-                            <td>@o.Price zł</td>
-                        </tr>
-                     }
-                </tr>
-                <tr><th>Total price: @Model.TotalPrice()</th> </tr>
+                <td> @Html.Partial("_Rows", Model.Orders) </td>
             </tr>
             }
-            else
+         else
             {
                 <tr><th>There's no pending orders for this table</th></tr>
             }

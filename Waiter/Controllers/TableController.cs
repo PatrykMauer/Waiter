@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using Waiter.Services;
 using Waiter.ViewModels;
 using System;
-using System.Web.UI.WebControls;
 
 namespace Waiter.Controllers
 {
@@ -97,7 +96,7 @@ namespace Waiter.Controllers
 
             var table = await _tableService.GetAsync(selectedTable);
 
-            return PartialView("_Rows",table);
+            return PartialView("_Rows",table.Orders);
         }
     }
 }

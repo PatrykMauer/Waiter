@@ -7,7 +7,7 @@
 @using (Ajax.BeginForm("Update", "Table", null,
     new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ordersTable" }, new { id = "form" }))
 {
-    <div class="flex">
+    <div class="flex" >
         <label id="dish" for="name"></label>
         <label id="price" style="margin-left: 5px; margin-right: 5px;"></label>
         <div id="input" style="margin-left: 5px;"></div>
@@ -45,8 +45,6 @@
                          .attr("name", "price").val(priceValue);
 
                      $('#form').prepend(selectedTable).prepend(dish).prepend(price);
-
-                     
                  });
              });
     });

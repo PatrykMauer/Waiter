@@ -5,10 +5,10 @@
 
 
 @using (Ajax.BeginForm("Manage", "Table", null,
-    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.InsertBefore, UpdateTargetId = "editedData" }, new { id = "form" }))
+    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "editedData" }, new { id = "form" }))
 {
-    <div class="flex" id="input"></div>
-    <div class="flex " id="price"></div>
+    <div id="input"></div>
+    <div id="price"></div>
     <input onclick="ClearRows()" type="submit" name="operation" value="Add" formaction="add"  />
     <input onclick="ClearRows()" type="submit" name="operation" value="Remove" formaction="remove" />
 }
@@ -47,7 +47,6 @@
      });
 
     function ClearRows() {
-        $('#5 tbody td').empty();
-        console.log("works")
+        $('#editedData').html("");
     }
 </script>
