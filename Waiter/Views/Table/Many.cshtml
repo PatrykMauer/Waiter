@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Waiter.ViewModels.TablesViewModel
+
+@foreach (var table in Model.Tables)
+{
+    @Html.CheckBox(table.Id.ToString())
+    @Html.Label(table.Id.ToString())
+}

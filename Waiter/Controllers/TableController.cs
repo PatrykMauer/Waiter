@@ -52,7 +52,7 @@ namespace Waiter.Controllers
                 Tables = tables,
             };
 
-            return View(model: viewModel);
+            return View(viewModel);
         }
 
         public async Task<ActionResult> Pay(int id)
@@ -97,6 +97,18 @@ namespace Waiter.Controllers
             var table = await _tableService.GetAsync(selectedTable);
 
             return PartialView("_Rows",table.Orders);
+        }
+
+        public async Task<ActionResult> Many()
+        {
+            var tables = await _tableService.GetAllAsync();
+
+            var viewModel = new TablesViewModel()
+            {
+                Tables = tables,
+            };
+
+            return View(viewModel);
         }
     }
 }

@@ -222,6 +222,7 @@
     <Content Include="Views\Table\Pay.cshtml" />
     <Content Include="Views\Shared\_EditOrder.cshtml" />
     <Content Include="Views\Shared\_Rows.cshtml" />
+    <Content Include="Views\Table\Many.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
