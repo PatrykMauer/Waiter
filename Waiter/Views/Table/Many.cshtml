@@ -4,8 +4,31 @@
 
 @model Waiter.ViewModels.TablesViewModel
 
+<p>Check to which tables you want to place an order</p>
+
 @foreach (var table in Model.Tables)
 {
-    @Html.CheckBox(table.Id.ToString())
+    @Html.CheckBox(table.Id.ToString(), false, new { @class= "tables", onclick = "getChecked()", id= @table.Id})
     @Html.Label(table.Id.ToString())
 }
+<button onclick="place()">Place an order</button>
+<div class="flex" id="dishesDiv"></div>
+
+<script>
+    var valores;
+    function getChecked() {
+         valores = (function () {
+            var valor = [];
+            $('input.tables[type=checkbox]').each(function () {
+                if (this.checked)
+                    valor.push($(this).attr("id"));
+            });
+            return valor;
+
+        })();
+
+        console.log(valores);
+    }
+
+
+</script>

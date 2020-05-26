@@ -29,7 +29,7 @@ namespace Waiter.Controllers
                 Dishes = dishes
             };
 
-            return PartialView("_DisplayDishes",viewModel);
+            return PartialView("_DisplayDishes", viewModel);
         }
 
         public async Task<ActionResult> Price (string selectedDish)
