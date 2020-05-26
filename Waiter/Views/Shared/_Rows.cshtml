@@ -1,12 +1,13 @@
-﻿@model List<Waiter.Models.Order>
+﻿@model Waiter.Models.Table
 
 <table class="table">
     <tr>
-        @foreach (var o in @Model)
+        @foreach (var o in @Model.Orders)
         {
             <td>@o.Amount</td>
             <td>@o.DishName</td>
             <td>@o.Price zł</td>
         }
+        <th>Total price: @Model.TotalPrice()</th>
     </tr>
 </table>

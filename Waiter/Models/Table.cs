@@ -10,7 +10,6 @@ namespace Waiter.Models
     {
         public int Id { get; set; }
         public List<Order> Orders { get; set; } = new List<Order>();
-
         public void AddOrder(Order order)
         {
             Orders.Add(order);

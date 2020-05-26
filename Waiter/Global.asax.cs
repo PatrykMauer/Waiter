@@ -28,11 +28,8 @@ namespace Waiter
 
             builder.RegisterType<InMemoryDishRepository>().As<IDishRepository>();
             builder.RegisterType<InMemoryTableRepository>().As<ITableRepository>();
-            builder.RegisterType<InMemoryOrderRepository>().As <IOrderRepository>();
-            builder.RegisterType<OrderService>().As<IOrderService>();
             builder.RegisterType<TableService>().As<ITableService>();
             builder.RegisterType<DishService>().As<IDishService>();
-
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.Name.EndsWith("Controller"));

@@ -5,12 +5,12 @@
 
 
 @using (Ajax.BeginForm("Manage", "Table", null,
-    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "editedData" }, new { id = "form" }))
+    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = Model.TableId.ToString() }, new { id = "form" }))
 {
     <div id="input"></div>
-    <div id="price"></div>
-    <input onclick="ClearRows()" type="submit" name="operation" value="Add" formaction="add"  />
-    <input onclick="ClearRows()" type="submit" name="operation" value="Remove" formaction="remove" />
+    <div class="@Model.TableId"></div>
+    <input type="submit" name="operation" value="Add" formaction="add"  />
+    <input type="submit" name="operation" value="Remove" formaction="remove" />
 }
 
 
@@ -21,9 +21,9 @@
             function () {
                 var selectedDish = $(this).find(":selected").text();
 
-                 $('#price').load('@Url.Action("Price","Dish")', { "selectedDish": selectedDish }, function () {
+                 $('div.@Model.TableId').load('@Url.Action("Price","Dish")', { "selectedDish": selectedDish }, function () {
 
-                     priceValue = $('#price').text();
+                     priceValue = $('div.@Model.TableId').text();
 
                      if ($('#input').is(':empty')) {
                          $('#input').append('@Html.TextBox("amount", 1 , new { @class = "form-control",  })');
@@ -45,8 +45,4 @@
                  });
              });
      });
-
-    function ClearRows() {
-        $('#editedData').html("");
-    }
 </script>

@@ -2,7 +2,7 @@
 
 @Html.DropDownListFor(m => m.TableId, new SelectList(Model.Tables, "Id", "Id"),
     "Select a Table number", new { @class = "form-control", @change = "this.form.submit();", @id = "dropDownId" })
-<div class="flex" id="dishesDiv"></div>
+<div id="dishesDiv"></div>
 <div class="flex" id="ordersTable"></div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>

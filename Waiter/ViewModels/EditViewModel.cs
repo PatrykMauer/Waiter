@@ -10,7 +10,6 @@ namespace Waiter.ViewModels
     {
         public int TableId { get; set; }
         public int DishId { get; set; }
-
         public IEnumerable<Dish> Dishes { get; set; }
     }
 }

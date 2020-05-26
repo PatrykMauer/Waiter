@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace Waiter.Repositories
 {
     //Marker
-
     public interface IRepository
     {
     }

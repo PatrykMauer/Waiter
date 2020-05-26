@@ -16,29 +16,29 @@
 
     function Edit(tableId) {
          var link = '@Url.Action("Edit","Table", new {id = -1 })';
-         link = link.replace("-1", tableId);
-        $('#edit').load(link);
+        link = link.replace("-1", tableId);
+        $("td."+tableId).load(link);
     }
 
 </script>
 
 <div>
-    <table class="table" id="@Model.Id">
+    <table class="table">
         <tr><th>Table number @Model.Id</th></tr>
         @if (Model.Orders.Count() != 0)
         {
             <tr>
                 <td><button onclick="Clear(@Model.Id)">Clear Order</button></td>
                 <td> <button onclick="Edit(@Model.Id)">Edit Order</button></td>
-                <td id="edit"></td>
+                <td class="@Model.Id"></td>
             </tr>
             <tr>
                 <th>Amount</th>
                 <th>Dish</th>
                 <th>Price</th>
             </tr>
-            <tr id="editedData">
-                <td> @Html.Partial("_Rows", Model.Orders) </td>
+            <tr id="@Model.Id">
+                <td> @Html.Partial("_Rows", Model) </td>
             </tr>
             }
          else
@@ -47,7 +47,7 @@
             }
     </table>
     @if (Model.Orders.Count() != 0)
-    {
+    {   
         <button onclick="Pay(this)" id="@Model.Id">Pay</button>
     }
 </div>

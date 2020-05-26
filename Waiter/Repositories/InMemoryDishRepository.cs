@@ -27,7 +27,6 @@ namespace Waiter.Repositories
         public async Task<Dish> GetAsync(string name)
             => await Task.FromResult(_dishes.SingleOrDefault(x => x.Name == name));
 
-
         public async Task AddAsync(Dish dish)
         {
             _dishes.Add(dish);
@@ -49,7 +48,5 @@ namespace Waiter.Repositories
             _dishes.Remove(dish);
             await Task.CompletedTask;
         }
-
-        
     }
 }

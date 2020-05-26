@@ -104,7 +104,7 @@ namespace Waiter.Controllers
 
             var table = await _tableService.GetAsync(selectedTable);
 
-            return PartialView("_Rows",table.Orders);
+            return PartialView("_Rows",table);
         }
 
         public async Task<ActionResult> Many()
