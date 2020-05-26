@@ -8,11 +8,12 @@
 
 @foreach (var table in Model.Tables)
 {
-    @Html.CheckBox(table.Id.ToString(), false, new { @class= "tables", onclick = "getChecked()", id= @table.Id})
+    @Html.CheckBox(table.Id.ToString(), false, new { @class = "tables", onclick = "getChecked()", id = @table.Id })
     @Html.Label(table.Id.ToString())
 }
 <button onclick="place()">Place an order</button>
-<div class="flex" id="dishesDiv"></div>
+<div id="dishesDiv"></div>
+<div class="flex" id="ordersTable"></div>
 
 <script>
     var valores;
@@ -30,5 +31,7 @@
         console.log(valores);
     }
 
-
+    function place() {
+                $('#dishesDiv').load('@Url.Action("DisplayMany","Dish")', { "selectedTables": valores });
+    }
 </script>

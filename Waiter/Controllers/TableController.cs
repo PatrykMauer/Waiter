@@ -43,6 +43,14 @@ namespace Waiter.Controllers
             return PartialView("_DisplayOrder", viewModel);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> UpdateMany(int[] selectedTables, int amount, string selectedDish, string price)
+        {
+            await _tableService.UpdateManyAsync(selectedTables, amount, selectedDish, Convert.ToDecimal(price.Replace("zł", "")));
+
+            return PartialView("_Updated");
+        }
+
         public async Task<ActionResult> Display()
         {
             var tables = await _tableService.GetAllAsync();

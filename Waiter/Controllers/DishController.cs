@@ -31,6 +31,18 @@ namespace Waiter.Controllers
 
             return PartialView("_DisplayDishes", viewModel);
         }
+        public async Task<ActionResult> DisplayMany(int[] selectedTables)
+        {
+            var dishes = await _dishRepository.GetAllAsync();
+
+            var viewModel = new ManyDishesViewModel()
+            {
+                TableIds = selectedTables,
+                Dishes = dishes
+            };
+
+            return PartialView("_DisplayManyDishes", viewModel);
+        }
 
         public async Task<ActionResult> Price (string selectedDish)
         {

@@ -41,6 +41,27 @@ namespace Waiter.Services
             await _tableRepository.UpdateAsync(table);
         }
 
+        public async Task UpdateManyAsync(int[] selectedTables, int amount, string dishName, decimal price)
+        {
+            foreach(var id in selectedTables)
+            {
+                var table = await _tableRepository.GetAsync(id);
+
+                var order = new Order(id, amount, dishName, price);
+
+                if (table.Orders.Any(x => x.DishName.Contains(dishName)))
+                {
+                    order = table.Orders.First(x => x.DishName.Contains(dishName));
+                    table.RemoveOrder(order);
+                    order.IncrementAmount(amount);
+                }
+
+                table.AddOrder(order);
+
+                await _tableRepository.UpdateAsync(table);
+            }
+        }
+
         public async Task RemoveAsync(int tableId,int amount, string dishName)
         {
             var table = await _tableRepository.GetAsync(tableId);

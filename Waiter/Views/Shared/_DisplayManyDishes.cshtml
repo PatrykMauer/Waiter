@@ -1,10 +1,10 @@
-﻿@model Waiter.ViewModels.DishesViewModel
+﻿@model Waiter.ViewModels.ManyDishesViewModel
 
 @Html.DropDownListFor(m => m.DishId, new SelectList(Model.Dishes, "Id", "Name"),
     "Select a dish", new { @class = "form-control", @change = "this.form.submit();", @id = "dishDropdown" })
 
 
-@using (Ajax.BeginForm("Update", "Table", null,
+@using (Ajax.BeginForm("UpdateMany", "Table", null,
     new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ordersTable" }, new { id = "form" }))
 {
     <div class="flex">
@@ -24,18 +24,28 @@
                 var selectedDish = $(this).find(":selected").text();
 
                  $('#dish').text(selectedDish + " ");
-                 $('#price').load('@Url.Action("Price","Dish")', { "selectedDish": selectedDish }, function () {
+                 $('#price').load('@Url.Action("Price", "Dish")', { "selectedDish": selectedDish }, function () {
 
                      priceValue = $('#price').text();
 
                      if ($('#input').is(':empty')) {
-                         $('#input').append('@Html.TextBox("amount", 1 , new { @class = "form-control",  })');
+                         $('#input').append('@Html.TextBox("amount", 1, new { @class = "form-control", })');
                      }
 
-                     var selectedTable = $("<input>")
-                         .attr("type", "hidden")
-                         .attr("name", "selectedTable").val(@Model.TableId);
+                       var tableIds = [];
 
+                        @foreach (var id in Model.TableIds)
+                        {
+                            @:tableIds.push("@id");
+                        }
+
+                     for (var i = 0; i < tableIds.length; i++) {
+                         var selectedTables = $("<input>")
+                             .attr("type", "hidden")
+                             .attr("name", "selectedTables[]").val(tableIds[i]);
+
+                         $('#form').prepend(selectedTables)
+                     }
                      var dish = $("<input>")
                          .attr("type", "hidden")
                          .attr("name", "selectedDish").val(selectedDish);
@@ -44,8 +54,9 @@
                          .attr("type", "hidden")
                          .attr("name", "price").val(priceValue);
 
-                     $('#form').prepend(selectedTable).prepend(dish).prepend(price);
+                     $('#form').prepend(dish).prepend(price);
                  });
              });
     });
 </script>
+

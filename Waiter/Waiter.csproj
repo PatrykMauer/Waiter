@@ -172,6 +172,7 @@
     <Compile Include="Services\TableService.cs" />
     <Compile Include="ViewModels\DishesViewModel.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />
+    <Compile Include="ViewModels\ManyDishesViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PriceViewModel.cs" />
     <Compile Include="ViewModels\TablesViewModel.cs" />
@@ -223,6 +224,8 @@
     <Content Include="Views\Shared\_EditOrder.cshtml" />
     <Content Include="Views\Shared\_Rows.cshtml" />
     <Content Include="Views\Table\Many.cshtml" />
+    <Content Include="Views\Shared\_DisplayManyDishes.cshtml" />
+    <Content Include="Views\Shared\_Updated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,7 @@ namespace Waiter.Services
         Task<Table> GetAsync(int tableId);
         Task<IEnumerable<Table>> GetAllAsync();
         Task UpdateAsync(int tableId, int amount, string dishName, decimal price);
+        Task UpdateManyAsync(int[] tableIds, int amount, string dishName, decimal price);
         Task RemoveAsync(int selectedTable, int amount, string selectedDish);
         Task RemoveAllAsync(int tableId);
     }
